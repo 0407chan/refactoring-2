@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node --experimental-json-modules src/main.js",
     "dev": "nodemon --experimental-json-modules --watch src/ src/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,9 @@
   "homepage": "https://github.com/0407chan/refactoring-2#readme",
   "type": "module",
   "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "jest": "^27.1.0",
     "prettier": "2.3.2"
   },
   "dependencies": {
