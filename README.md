@@ -16,3 +16,9 @@ yarn start
 ```
 yarn test
 ```
+
+### 실행 결과
+![image](https://user-images.githubusercontent.com/19217576/131240489-478e9dab-d6fe-4f0f-8619-a1422000ae4e.png)
+
+![image](https://user-images.githubusercontent.com/19217576/131240494-d735e070-b658-4c1b-b4fe-9c08d33a0ca3.png)
+
