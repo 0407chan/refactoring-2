@@ -1,0 +1,28 @@
+{
+  "name": "refactoring-2",
+  "version": "1.0.0",
+  "description": "마틴 파울러 - 리팩토링 2판 책 실습 레포",
+  "main": "main.js",
+  "scripts": {
+    "start": "node --experimental-json-modules src/main.js",
+    "dev": "nodemon --experimental-json-modules --watch src/ src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0407chan/refactoring-2.git"
+  },
+  "author": "이찬호",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/0407chan/refactoring-2/issues"
+  },
+  "homepage": "https://github.com/0407chan/refactoring-2#readme",
+  "type": "module",
+  "devDependencies": {
+    "prettier": "2.3.2"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
