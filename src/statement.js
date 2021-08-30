@@ -52,4 +52,8 @@ export function statement(invoice, plays) {
 
     return result
   }
+
+  function playFor(aPerformance) {
+    return plays[aPerformance.playID]
+  }
 }
