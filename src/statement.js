@@ -9,18 +9,17 @@ export function statement(invoice, plays) {
   }).format
 
   for (let perf of invoice.performances) {
-    const play = playFor(perf)
-    let thisAmount = amountFor(perf, play)
+    let thisAmount = amountFor(perf, playFor(perf))
 
     //포인트 적립
     volumnCredits += Math.max(perf.audience - 30, 0)
     //희극 관객 5명마다 추가 포인트 제공
-    if ('comedy' === play.type) {
+    if ('comedy' === playFor(perf).type) {
       volumnCredits += Math.floor(perf.audience / 5)
     }
 
     //청구 내역 출력
-    result += ` ${play.name}: ${format(thisAmount / 100)} (${
+    result += ` ${playFor(perf).name}: ${format(thisAmount / 100)} (${
       perf.audience
     }석)\n`
     totalAmount += thisAmount
