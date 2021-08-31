@@ -22,12 +22,12 @@ export function statement(invoice, plays) {
   return result
 
   function volumnCreditsFor(perf) {
-    let volumnCredits = 0
-    volumnCredits += Math.max(perf.audience - 30, 0)
+    let result = 0
+    result += Math.max(perf.audience - 30, 0)
     if ('comedy' === playFor(perf).type) {
-      volumnCredits += Math.floor(perf.audience / 5)
+      result += Math.floor(perf.audience / 5)
     }
-    return volumnCredits
+    return result
   }
 
   function amountFor(aPerformance) {
