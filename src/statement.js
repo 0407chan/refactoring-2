@@ -9,14 +9,19 @@ export function statement(invoice, plays) {
     totalAmount += amountFor(perf)
   }
 
-  let volumnCredits = 0
-  for (let perf of invoice.performances) {
-    volumnCredits += volumnCreditsFor(perf)
-  }
+  let volumnCredits = totalVolumnCredits()
+
   result += `총액: ${usd(totalAmount)}\n`
   result += `적립 포인트: ${volumnCredits}점\n`
   return result
 
+  function totalVolumnCredits() {
+    let volumnCredits = 0
+    for (let perf of invoice.performances) {
+      volumnCredits += volumnCreditsFor(perf)
+    }
+    return volumnCredits
+  }
   function usd(aNumber) {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
