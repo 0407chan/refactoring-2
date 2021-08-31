@@ -18,11 +18,11 @@ export function statement(invoice, plays) {
     return result
   }
   function totalVolumnCredits() {
-    let volumnCredits = 0
+    let result = 0
     for (let perf of invoice.performances) {
-      volumnCredits += volumnCreditsFor(perf)
+      result += volumnCreditsFor(perf)
     }
-    return volumnCredits
+    return result
   }
   function usd(aNumber) {
     return new Intl.NumberFormat('en-US', {
