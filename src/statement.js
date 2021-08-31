@@ -9,10 +9,8 @@ export function statement(invoice, plays) {
     totalAmount += amountFor(perf)
   }
 
-  let volumnCredits = totalVolumnCredits()
-
   result += `총액: ${usd(totalAmount)}\n`
-  result += `적립 포인트: ${volumnCredits}점\n`
+  result += `적립 포인트: ${totalVolumnCredits()}점\n`
   return result
 
   function totalVolumnCredits() {
