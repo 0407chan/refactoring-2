@@ -6,13 +6,11 @@ export function statement(invoice, plays) {
       perf.audience
     }석)\n`
   }
-  let totalAmount = appleSauce()
-
-  result += `총액: ${usd(totalAmount)}\n`
+  result += `총액: ${usd(totalAmount())}\n`
   result += `적립 포인트: ${totalVolumnCredits()}점\n`
   return result
 
-  function appleSauce() {
+  function totalAmount() {
     let totalAmount = 0
     for (let perf of invoice.performances) {
       totalAmount += amountFor(perf)
