@@ -19,7 +19,7 @@ export function renderPlainText(data, plays) {
   let result = `청구 내역 (고객명: ${data.customer})\n`
   for (let perf of data.performances) {
     //청구 내역 출력
-    result += ` ${playFor(perf).name}: ${usd(amountFor(perf))} (${
+    result += ` ${perf.play.name}: ${usd(amountFor(perf))} (${
       perf.audience
     }석)\n`
   }
@@ -52,7 +52,7 @@ export function renderPlainText(data, plays) {
   function volumnCreditsFor(perf) {
     let result = 0
     result += Math.max(perf.audience - 30, 0)
-    if ('comedy' === playFor(perf).type) {
+    if ('comedy' === perf.play.type) {
       result += Math.floor(perf.audience / 5)
     }
     return result
@@ -61,7 +61,7 @@ export function renderPlainText(data, plays) {
   function amountFor(aPerformance) {
     let result = 0
 
-    switch (playFor(aPerformance).type) {
+    switch (aPerformance.play.type) {
       case 'tragedy':
         result = 40000
         if (aPerformance.audience > 30) {
