@@ -8,6 +8,7 @@ export function statement(invoice, plays) {
     const result = Object.assign({}, aPerformance)
     result.play = playFor(result)
     result.amount = amountFor(result)
+    result.volumnCredits = volumnCreditsFor(result)
     return result
   }
 
@@ -37,6 +38,15 @@ export function statement(invoice, plays) {
     }
     return result
   }
+
+  function volumnCreditsFor(perf) {
+    let result = 0
+    result += Math.max(perf.audience - 30, 0)
+    if ('comedy' === perf.play.type) {
+      result += Math.floor(perf.audience / 5)
+    }
+    return result
+  }
 }
 
 export function renderPlainText(data, plays) {
@@ -59,7 +69,7 @@ export function renderPlainText(data, plays) {
   function totalVolumnCredits() {
     let result = 0
     for (let perf of data.performances) {
-      result += volumnCreditsFor(perf)
+      result += perf.volumnCredits
     }
     return result
   }
@@ -69,14 +79,5 @@ export function renderPlainText(data, plays) {
       currency: 'USD',
       minimumFractionDigits: 2,
     }).format(aNumber / 100)
-  }
-
-  function volumnCreditsFor(perf) {
-    let result = 0
-    result += Math.max(perf.audience - 30, 0)
-    if ('comedy' === perf.play.type) {
-      result += Math.floor(perf.audience / 5)
-    }
-    return result
   }
 }
