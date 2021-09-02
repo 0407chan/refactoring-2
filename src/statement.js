@@ -1,10 +1,11 @@
 export function statement(invoice, plays) {
   const statementData = {}
+  statementData.customer = invoice.customer
   return renderPlainText(statementData, invoice, plays)
 }
 
 export function renderPlainText(data, invoice, plays) {
-  let result = `청구 내역 (고객명: ${invoice.customer})\n`
+  let result = `청구 내역 (고객명: ${data.customer})\n`
   for (let perf of invoice.performances) {
     //청구 내역 출력
     result += ` ${playFor(perf).name}: ${usd(amountFor(perf))} (${
