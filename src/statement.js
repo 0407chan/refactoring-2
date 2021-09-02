@@ -6,7 +6,12 @@ export function statement(invoice, plays) {
 
   function enrichPerfomance(aPerformance) {
     const result = Object.assign({}, aPerformance)
+    result.play = playFor(result)
     return result
+  }
+
+  function playFor(aPerformance) {
+    return plays[aPerformance.playID]
   }
 }
 
@@ -75,9 +80,5 @@ export function renderPlainText(data, plays) {
     }
 
     return result
-  }
-
-  function playFor(aPerformance) {
-    return plays[aPerformance.playID]
   }
 }
