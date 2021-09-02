@@ -7,55 +7,12 @@ export function statement(invoice, plays) {
   function enrichPerfomance(aPerformance) {
     const result = Object.assign({}, aPerformance)
     result.play = playFor(result)
+    result.amount = amountFor(result)
     return result
   }
 
   function playFor(aPerformance) {
     return plays[aPerformance.playID]
-  }
-}
-
-export function renderPlainText(data, plays) {
-  let result = `청구 내역 (고객명: ${data.customer})\n`
-  for (let perf of data.performances) {
-    //청구 내역 출력
-    result += ` ${perf.play.name}: ${usd(amountFor(perf))} (${
-      perf.audience
-    }석)\n`
-  }
-  result += `총액: ${usd(totalAmount())}\n`
-  result += `적립 포인트: ${totalVolumnCredits()}점\n`
-  return result
-
-  function totalAmount() {
-    let result = 0
-    for (let perf of data.performances) {
-      result += amountFor(perf)
-    }
-    return result
-  }
-  function totalVolumnCredits() {
-    let result = 0
-    for (let perf of data.performances) {
-      result += volumnCreditsFor(perf)
-    }
-    return result
-  }
-  function usd(aNumber) {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2,
-    }).format(aNumber / 100)
-  }
-
-  function volumnCreditsFor(perf) {
-    let result = 0
-    result += Math.max(perf.audience - 30, 0)
-    if ('comedy' === perf.play.type) {
-      result += Math.floor(perf.audience / 5)
-    }
-    return result
   }
 
   function amountFor(aPerformance) {
@@ -77,6 +34,50 @@ export function renderPlainText(data, plays) {
         break
       default:
         throw new Error(`알 수 없는 장르: ${playFor(aPerformance).type}`)
+    }
+  }
+
+  export function renderPlainText(data, plays) {
+    let result = `청구 내역 (고객명: ${data.customer})\n`
+    for (let perf of data.performances) {
+      //청구 내역 출력
+      result += ` ${perf.play.name}: ${usd(amountFor(perf))} (${
+        perf.audience
+      }석)\n`
+    }
+    result += `총액: ${usd(totalAmount())}\n`
+    result += `적립 포인트: ${totalVolumnCredits()}점\n`
+    return result
+
+    function totalAmount() {
+      let result = 0
+      for (let perf of data.performances) {
+        result += amountFor(perf)
+      }
+      return result
+    }
+    function totalVolumnCredits() {
+      let result = 0
+      for (let perf of data.performances) {
+        result += volumnCreditsFor(perf)
+      }
+      return result
+    }
+    function usd(aNumber) {
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2,
+      }).format(aNumber / 100)
+    }
+
+    function volumnCreditsFor(perf) {
+      let result = 0
+      result += Math.max(perf.audience - 30, 0)
+      if ('comedy' === perf.play.type) {
+        result += Math.floor(perf.audience / 5)
+      }
+      return result
     }
 
     return result
