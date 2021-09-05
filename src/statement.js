@@ -1,4 +1,4 @@
-import createStatementData from './createStatementData'
+import createStatementData from './createStatementData.js'
 
 export function statement(invoice, plays) {
   return renderPlainText(createStatementData(invoice, plays))
@@ -20,11 +20,11 @@ export function htmlStatement(invouce, plays) {
 }
 
 export function renderHtml(data) {
-  let result = `<h1>청구 내역 (고객명: ${data.currency})</h1>\n`
+  let result = `<h1>청구 내역 (고객명: ${data.customer})</h1>\n`
   result += `<table>\n`
-  result += `<tr><th>연극</th><th>좌석 수</th><th>금액</th>`
+  result += `<tr><th>연극</th><th>좌석 수</th><th>금액</th>\n`
   for (let perf of data.performances) {
-    result += ` <tr><td>${perf.play.name}</td><td>(${perf.audience}석)</td>`
+    result += `  <tr><td>${perf.play.name}</td><td>(${perf.audience}석)</td>`
     result += `<td>${usd(perf.amount)}</td></tr>\n`
   }
   result += `</table>\n`
