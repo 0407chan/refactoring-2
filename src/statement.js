@@ -15,6 +15,10 @@ export function renderPlainText(data, plays) {
   return result
 }
 
+export function htmlStatement(invouce, plays) {
+  return renderHtml(createStatementData(invouce, plays))
+}
+
 export function renderHtml(data) {
   let result = `<h1>청구 내역 (고객명: ${data.currency})</h1>\n`
   result += `<table>\n`
