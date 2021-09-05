@@ -43,17 +43,13 @@ export default function createStatementData(invoice, plays) {
     )
     const result = Object.assign({}, aPerformance)
     result.play = calculator.play
-    result.amount = amountFor(result)
+    result.amount = calculator.amount
     result.volumnCredits = volumnCreditsFor(result)
     return result
   }
 
   function playFor(aPerformance) {
     return plays[aPerformance.playID]
-  }
-
-  function amountFor(aPerformance) {
-    return new PerformanceCalculator(aPerformance, playFor(aPerformance)).amount
   }
 
   function volumnCreditsFor(perf) {
